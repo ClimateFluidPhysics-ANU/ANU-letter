@@ -1,0 +1,155 @@
+% !Mode:: "TeX:UTF-8"
+
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+
+%basic cover letter template
+\documentclass[11pt]{article}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amssymb,amsmath,graphicx}
+
+
+\usepackage{fontspec}
+
+
+\ExplSyntaxOn
+\NewDocumentCommand{\onlywarniffontnotfound}{}
+ {
+  \suppressfontnotfounderror = \c_one 
+  %\font_suppress_not_found_error:
+  \msg_redirect_name:nnn {fontspec}{font-not-found}{warning}
+ }
+\ExplSyntaxOff
+
+\onlywarniffontnotfound
+\setmainfont{Helvetica Neue Light}[
+  ItalicFont=Helvetica Neue Light Italic,
+]
+\expandafter\ifx\the\font\nullfont
+  \setmainfont{Arial}
+  \expandafter\ifx\the\font\nullfont
+    \typeout{hmm your document might be a bit white, sorry}
+  \else
+    \typeout{Arial}
+  \fi
+\else
+\typeout{you have Helvetica Neue Light}
+\fi
+
+
+
+
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\definecolor{jhublue}{RGB}{0,105,175}
+\usepackage[xetex, bookmarks, colorlinks, breaklinks, pdftitle={ANU letter}]{hyperref}
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=jhublue}
+
+% \oddsidemargin=0in
+% \evensidemargin=0in
+% \textwidth 6.5in
+% \topmargin=-1in
+% \textheight=9in
+\textheight 8.5in \textwidth 6.5in
+\oddsidemargin 0in \topmargin -1in
+
+\textheight 8.5in \textwidth 6.5in
+\oddsidemargin 0in \topmargin -1in
+
+%Margins and Header/Footer
+\geometry{a4paper,
+  top=0.75in,
+  bottom=1.5in,
+  left=1in,
+  right=1in,
+  headheight=14.5pt, % the default is too short
+  heightrounded, % avoids the need of a flexible baselineskip
+} 
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhf{} % clear all fields
+\fancyhead[R]{}
+\fancypagestyle{fancy}{%
+  \renewcommand{\headrulewidth}{0.4pt}%
+  \renewcommand{\footrulewidth}{0.4pt}%
+  \fancyhf{}% clear all fields
+  \fancyhead[R]{}%
+  \fancyfoot{}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize\color{Gray} The Australian National University | Canberra ACT 2601 Australia | CRICOS Provider No. 00120C  }
+
+
+
+
+% \makeatletter
+%   \def\@texttop{}
+% \makeatother
+
+\usepackage{lipsum}
+
+
+
+
+\setlength\parindent{0pt}
+\addtolength{\parskip}{\baselineskip}
+
+
+\begin{document}
+
+
+
+
+\parbox{.5\linewidth}
+{
+\begin{flushleft}
+\includegraphics[height=0.6in]{ANU_logo}\\
+\vspace{7em}
+\end{flushleft}
+}
+\parbox{.5\linewidth}
+{
+\begin{flushright}
+{\bf Name Surname}\\
+Position\\
+\mbox{}\\
+Research School of Earth Sciences\\
+Australian National University\\
+142 Mills Road, Building~JX, Room~X.XX\\
+Acton, ACT~2601, Australia\\
++61 2 6125 XXXX\\
+\href{mailto:name.surname@anu.edu.au}{name.surname@anu.edu.au}
+\end{flushright}
+}
+
+
+
+\today
+
+
+
+\vspace{3em}
+
+\begin{center}\textbf{Subject}\end{center}
+
+
+Dear Somebody,
+
+\lipsum[1-1]
+
+
+I appreciate your time and look forward to hearing from you.
+
+\bigskip
+
+Sincerely,\\
+\includegraphics[width=6cm]{signature}\\[.25cm]
+Name Surname
+
+\end{document}
